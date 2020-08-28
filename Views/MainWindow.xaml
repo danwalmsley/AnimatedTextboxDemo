@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:FocusTextBoxDemo.ViewModels;assembly=FocusTextBoxDemo"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="FocusTextBoxDemo.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="FocusTextBoxDemo">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextControlBorderBrushFocused">Purple</SolidColorBrush>
+        <Thickness x:Key="TextControlBorderThemeThickness">0 0 0 1</Thickness>
+        <StaticResource x:Key="TextControlBorderThemeThicknessFocused" ResourceKey="TextControlBorderThemeThickness"/>
+        <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="TextBox:focus">
+            <Setter Property="RenderTransform" Value="scale(1.2)" />
+        </Style>
+    </Window.Styles>
+    
+    <StackPanel Spacing="10" Width="400" HorizontalAlignment="Center" Margin="40">
+        <TextBlock Text="Enter your personal details:" />
+        <TextBox Watermark="Name" />
+        <TextBox Watermark="Email" />
+        <TextBox Watermark="Age" />
+        <TextBox Watermark="Something" />
+        <TextBox Watermark="Another" />
+    </StackPanel>
+
+</Window>
